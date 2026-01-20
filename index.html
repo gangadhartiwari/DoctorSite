@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dr. Padamaja Joshi | Clinical Nutritionist</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("YOUR_PUBLIC_KEY");
+</script>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <div class="logo">Dr. Padamaja Joshi</div>
+    <nav>
+      <a onclick="openTab('home')">Home</a>
+      <a onclick="openTab('about')">About</a>
+      <a onclick="openTab('services')">Expertise</a>
+      <a onclick="openTab('appointment')" class="cta">Book Appointment</a>
+      <a onclick="openTab('admin')">Admin</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="section hero">
+  <div class="container hero-grid">
+    <div>
+      <h1>Advanced Clinical Nutrition & Critical Care</h1>
+      <p>
+        36+ years of expertise in ICU, burns, trauma & therapeutic nutrition.
+      </p>
+      <button onclick="openTab('appointment')">Book Consultation</button>
+    </div>
+
+    <!-- Replace with doctor image -->
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1550831107-1553da8c8464" alt="Doctor">
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section hidden">
+  <div class="container split">
+    <div>
+      <h2>About Dr. Padamaja Joshi</h2>
+      <p>
+        Senior Clinical Nutritionist & Dietician with more than
+        <strong>three decades of hospital-based experience</strong>.
+        Former Chief Dietician at leading multispecialty hospitals.
+      </p>
+      <ul class="points">
+        <li>ICU & Critical Care Nutrition</li>
+        <li>Burns & Trauma Nutritional Support</li>
+        <li>NABH Protocol Implementation</li>
+        <li>Therapeutic Diet Planning</li>
+      </ul>
+    </div>
+
+    <div class="illustration">
+      <img src="https://images.unsplash.com/photo-1580281657521-8c5a6f90f16d">
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section hidden">
+  <div class="container">
+    <h2 class="center">Areas of Expertise</h2>
+
+    <div class="cards">
+      <div class="card">Critical Care & ICU Nutrition</div>
+      <div class="card">Burns & Trauma Support</div>
+      <div class="card">Pre & Post Operative Nutrition</div>
+      <div class="card">Diabetes & Lifestyle Disorders</div>
+      <div class="card">Hospital Dietetics Management</div>
+      <div class="card">Nutritional Counselling</div>
+    </div>
+  </div>
+</section>
+
+<!-- APPOINTMENT -->
+<section id="appointment" class="section hidden">
+  <div class="container form-box">
+    <h2>Book Appointment</h2>
+
+    <form id="appointmentForm">
+      <input id="name" placeholder="Patient Name" required>
+      <input id="phone" placeholder="Mobile Number" required>
+      <input id="date" type="date" required>
+
+      <select id="time">
+        <option>10:00 - 10:30</option>
+        <option>10:30 - 11:00</option>
+        <option>11:00 - 11:30</option>
+      </select>
+
+      <textarea id="problem" placeholder="Health Concern"></textarea>
+
+      <button type="submit">Submit Appointment</button>
+    </form>
+  </div>
+</section>
+
+<!-- ADMIN -->
+<section id="admin" class="section hidden">
+  <div class="container admin-box">
+
+    <div id="adminLogin">
+      <h2>Admin Login</h2>
+      <input type="password" id="adminPass" placeholder="Password">
+      <button onclick="loginAdmin()">Login</button>
+    </div>
+
+    <div id="adminPanel" class="hidden">
+      <h2>Appointments</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Concern</th>
+          </tr>
+        </thead>
+        <tbody id="adminTable"></tbody>
+      </table>
+
+      <div class="admin-actions">
+        <button onclick="exportToExcel()">Export to Excel</button>
+        <button onclick="clearAppointments()">Clear All</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WhatsApp Floating -->
+<a id="whatsappBtn" class="whatsapp" target="_blank">WhatsApp</a>
+
+<script src="script.js"></script>
+</body>
+</html>
