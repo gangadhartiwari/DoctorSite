@@ -1,5 +1,5 @@
 const ADMIN_PASSWORD = "admin123";
-const WHATSAPP_NUMBER = "91XXXXXXXXXX";
+const WHATSAPP_NUMBER = "919009664469";
 
 let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
 const table = document.getElementById("adminTable");
