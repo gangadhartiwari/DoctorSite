@@ -1,154 +1,1624 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Dr. Padamaja Joshi | Clinical Nutritionist</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Padamaja Joshi - Clinical Nutritionist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --purple: #9b59b6;
+            --sidebar-width: 280px;
+        }
 
-<!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-  emailjs.init("YOUR_PUBLIC_KEY");
-</script>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(44, 62, 80, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23ecf0f1" width="1200" height="600"/><circle cx="100" cy="100" r="50" fill="%233498db" opacity="0.1"/><circle cx="900" cy="400" r="80" fill="%232c3e50" opacity="0.1"/></svg>');
+            background-size: cover;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s 0.2s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            animation: fadeInUp 1s 0.4s both;
+        }
+
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: var(--success);
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: #229954;
+        }
+
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .doctor-image {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .about-text h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .credentials {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .credential-badge {
+            background: var(--light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--dark);
+            border-left: 4px solid var(--secondary);
+        }
+
+        /* Specializations */
+        .specializations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .spec-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .spec-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .spec-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .spec-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Services */
+        #services {
+            background: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .service-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .service-item h4 {
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        /* Booking Section */
+        .booking-container {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            padding: 3rem;
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .booking-form {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Admin Panel Styles */
+        .admin-wrapper {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #f5f6fa;
+            z-index: 2000;
+            overflow: hidden;
+        }
+
+        .admin-wrapper.active {
+            display: flex;
+        }
+
+        .admin-sidebar {
+            width: var(--sidebar-width);
+            background: linear-gradient(180deg, var(--primary), var(--dark));
+            height: 100vh;
+            padding: 2rem 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+
+        .admin-logo {
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .admin-menu {
+            list-style: none;
+        }
+
+        .admin-menu-item {
+            margin: 0.5rem 1rem;
+            padding: 1rem;
+            color: white;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .admin-menu-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(5px);
+        }
+
+        .admin-menu-item.active {
+            background: var(--secondary);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .admin-menu-item .icon {
+            font-size: 1.5rem;
+        }
+
+        .admin-menu-item .badge {
+            margin-left: auto;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .admin-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .admin-header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .admin-header h2 {
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .stat-icon.pending {
+            background: rgba(243, 156, 18, 0.1);
+            color: var(--warning);
+        }
+
+        .stat-icon.confirmed {
+            background: rgba(39, 174, 96, 0.1);
+            color: var(--success);
+        }
+
+        .stat-icon.total {
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--secondary);
+        }
+
+        .stat-icon.cancelled {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--accent);
+        }
+
+        .stat-details h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-details p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .admin-section {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .appointments-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 1.5rem 2rem;
+            font-weight: 600;
+        }
+
+        .appointment-item {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--light);
+            transition: background 0.3s;
+        }
+
+        .appointment-item:hover {
+            background: #f8f9fa;
+        }
+
+        .appointment-item:last-child {
+            border-bottom: none;
+        }
+
+        .appointment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .appointment-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .appointment-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .detail-item .icon {
+            color: var(--secondary);
+        }
+
+        .appointment-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: rgba(243, 156, 18, 0.2);
+            color: var(--warning);
+        }
+
+        .status-confirmed {
+            background: rgba(39, 174, 96, 0.2);
+            color: var(--success);
+        }
+
+        .status-cancelled {
+            background: rgba(231, 76, 60, 0.2);
+            color: var(--accent);
+        }
+
+        .btn-approve {
+            background: var(--success);
+        }
+
+        .btn-approve:hover {
+            background: #229954;
+        }
+
+        .btn-cancel {
+            background: var(--accent);
+        }
+
+        .btn-cancel:hover {
+            background: #c0392b;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #7f8c8d;
+        }
+
+        .empty-state .icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        /* Contact */
+        #contact {
+            background: var(--light);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            animation: slideIn 0.3s;
+        }
+
+        .modal-content h3 {
+            color: var(--success);
+            margin-bottom: 1rem;
+        }
+
+        .password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .password-modal.active {
+            display: flex;
+        }
+
+        .password-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .password-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 1rem 0;
+            border: 2px solid var(--light);
+            border-radius: 8px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .admin-sidebar {
+                width: 80px;
+            }
+
+            .admin-menu-item span:not(.icon) {
+                display: none;
+            }
+
+            .admin-logo {
+                font-size: 2rem;
+            }
+
+            .admin-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .admin-login {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .admin-login-btn {
+            background: var(--dark);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+    </style>
 </head>
-
 <body>
-
-<header class="header">
-  <div class="container nav">
-    <div class="logo">Dr. Padamaja Joshi</div>
+    <!-- Navigation -->
     <nav>
-      <a onclick="openTab('home')">Home</a>
-      <a onclick="openTab('about')">About</a>
-      <a onclick="openTab('services')">Expertise</a>
-      <a onclick="openTab('appointment')" class="cta">Book Appointment</a>
-      <a onclick="openTab('admin')">Admin</a>
+        <div class="container">
+            <div class="logo">🏥 Dr. Padamaja Joshi</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMenu()">About</a></li>
+                <li><a href="#specializations" onclick="closeMenu()">Specializations</a></li>
+                <li><a href="#services" onclick="closeMenu()">Services</a></li>
+                <li><a href="#booking" onclick="closeMenu()">Book Appointment</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+            </ul>
+        </div>
     </nav>
-  </div>
-</header>
 
-<!-- HERO -->
-<section id="home" class="section hero">
-  <div class="container hero-grid">
-    <div>
-      <h1>Advanced Clinical Nutrition & Critical Care</h1>
-      <p>
-        36+ years of expertise in ICU, burns, trauma & therapeutic nutrition.
-      </p>
-      <button onclick="openTab('appointment')">Book Consultation</button>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Dr. Padamaja Joshi</h1>
+            <p>Critical Care Dietician & Clinical Nutritionist</p>
+            <p>36+ Years of Excellence in Clinical Nutrition</p>
+            <a href="#booking" class="btn">Book Consultation</a>
+            <a href="https://wa.me/919920625942" class="btn btn-secondary" target="_blank">WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Dr. Padamaja Joshi</h2>
+            <div class="about-content">
+                <div class="doctor-image">👩‍⚕️</div>
+                <div class="about-text">
+                    <h3>Qualified Clinical Nutritionist & Management Professional</h3>
+                    <p>With over 36 years of dedicated experience in clinical nutrition and dietetics, Dr. Padamaja Joshi stands as a pioneer in critical care nutrition, particularly in burn and trauma patient care.</p>
+                    <p>Dr. Joshi has served as Chief Dietician in prestigious multispecialty hospitals including Choithram Hospital & Research Center (Indore), Jupiter Lifeline Hospitals (Thane), and H J Doshi Hospital (Mumbai).</p>
+                    <p>Her groundbreaking research on nutritional support in burn patients has earned her multiple national awards including the K.G. Naidu Medical Trust Award and A.N. Radha Practicing Dietician Award.</p>
+                    
+                    <div class="credentials">
+                        <div class="credential-badge">R.D. (Registered Dietician)</div>
+                        <div class="credential-badge">P.G. Dietetics</div>
+                        <div class="credential-badge">EPGDHA (TISS)</div>
+                        <div class="credential-badge">NABH Certified</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specializations -->
+    <section id="specializations">
+        <div class="container">
+            <h2 class="section-title">Areas of Specialization</h2>
+            <div class="specializations-grid">
+                <div class="spec-card">
+                    <div class="spec-icon">🔥</div>
+                    <h3>Critical Care Nutrition</h3>
+                    <p>Expert in nutritional support for ICU patients, burn victims, and trauma cases with specialized protocols for critically ill patients.</p>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-icon">🏥</div>
+                    <h3>Clinical Nutrition</h3>
+                    <p>Comprehensive therapeutic diet planning and counseling for various diseases and medical conditions.</p>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-icon">💉</div>
+                    <h3>Enteral & Parenteral Nutrition</h3>
+                    <p>Advanced expertise in enteral and parenteral nutritional support, including immunomodulating nutrients.</p>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-icon">🔬</div>
+                    <h3>Burn Patient Care</h3>
+                    <p>Pioneer in nutritional protocols for burn patients with multiple research papers and national awards.</p>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-icon">⚕️</div>
+                    <h3>Surgical Nutrition</h3>
+                    <p>Pre-operative and post-operative nutritional support for optimal surgical outcomes.</p>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-icon">📊</div>
+                    <h3>Nutritional Assessment</h3>
+                    <p>Designing and implementing comprehensive nutritional assessment and reassessment protocols.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <div style="font-size: 3rem;">💻</div>
+                    <h4>Online Consultation</h4>
+                    <p>Virtual consultations from the comfort of your home</p>
+                </div>
+                <div class="service-item">
+                    <div style="font-size: 3rem;">📋</div>
+                    <h4>Diet Planning</h4>
+                    <p>Personalized therapeutic diet plans</p>
+                </div>
+                <div class="service-item">
+                    <div style="font-size: 3rem;">👨‍👩‍👧</div>
+                    <h4>Family Nutrition</h4>
+                    <p>Comprehensive nutrition guidance for families</p>
+                </div>
+                <div class="service-item">
+                    <div style="font-size: 3rem;">🏃</div>
+                    <h4>Weight Management</h4>
+                    <p>Evidence-based weight management programs</p>
+                </div>
+                <div class="service-item">
+                    <div style="font-size: 3rem;">💊</div>
+                    <h4>Disease Management</h4>
+                    <p>Nutrition therapy for diabetes, hypertension, and more</p>
+                </div>
+                <div class="service-item">
+                    <div style="font-size: 3rem;">📱</div>
+                    <h4>Follow-up Support</h4>
+                    <p>Regular monitoring and support via WhatsApp</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking">
+        <div class="container">
+            <h2 class="section-title">Book Your Consultation</h2>
+            <div class="booking-container">
+                <form class="booking-form" onsubmit="bookAppointment(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number (WhatsApp) *</label>
+                        <input type="tel" id="phone" required pattern="[0-9]{10}">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address (Optional)</label>
+                        <input type="email" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="consultation">Consultation Type *</label>
+                        <select id="consultation" required>
+                            <option value="">Select Type</option>
+                            <option value="online">Online Consultation</option>
+                            <option value="clinic">In-Clinic Visit</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Preferred Date *</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Preferred Time *</label>
+                        <select id="time" required>
+                            <option value="">Select Time</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                            <option value="17:00">05:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="concern">Health Concern / Reason for Visit</label>
+                        <textarea id="concern" placeholder="Please describe your health concern..."></textarea>
+                    </div>
+                    <button type="submit" class="btn">Confirm Booking</button>
+                </form>
+            </div>
+
+            <div class="admin-login">
+                <button class="admin-login-btn" onclick="showAdminLogin()">Admin Panel Login</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Panel -->
+    <div class="admin-wrapper" id="adminWrapper">
+        <div class="admin-sidebar">
+            <div class="admin-logo">⚕️ Admin Panel</div>
+            <ul class="admin-menu">
+                <li class="admin-menu-item active" onclick="showAdminSection('dashboard')">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </li>
+                <li class="admin-menu-item" onclick="showAdminSection('pending')">
+                    <span class="icon">⏳</span>
+                    <span>Pending</span>
+                    <span class="badge" id="pendingBadge">0</span>
+                </li>
+                <li class="admin-menu-item" onclick="showAdminSection('confirmed')">
+                    <span class="icon">✅</span>
+                    <span>Confirmed</span>
+                    <span class="badge" id="confirmedBadge" style="background: var(--success);">0</span>
+                </li>
+                <li class="admin-menu-item" onclick="showAdminSection('cancelled')">
+                    <span class="icon">❌</span>
+                    <span>Cancelled</span>
+                    <span class="badge" id="cancelledBadge" style="background: var(--dark);">0</span>
+                </li>
+                <li class="admin-menu-item" onclick="showAdminSection('all')">
+                    <span class="icon">📋</span>
+                    <span>All Appointments</span>
+                </li>
+                <li class="admin-menu-item" onclick="showAdminSection('settings')">
+                    <span class="icon">⚙️</span>
+                    <span>Settings</span>
+                </li>
+                <li class="admin-menu-item" onclick="logoutAdmin()" style="margin-top: 2rem;">
+                    <span class="icon">🚪</span>
+                    <span>Logout</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="admin-content">
+            <div class="admin-header">
+                <h2 id="adminSectionTitle">Dashboard</h2>
+                <button class="btn" onclick="logoutAdmin()">Logout</button>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div class="admin-section active" id="dashboardSection">
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon total">📊</div>
+                        <div class="stat-details">
+                            <h3 id="totalCount">0</h3>
+                            <p>Total Appointments</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon pending">⏳</div>
+                        <div class="stat-details">
+                            <h3 id="pendingCount">0</h3>
+                            <p>Pending Approval</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon confirmed">✅</div>
+                        <div class="stat-details">
+                            <h3 id="confirmedCount">0</h3>
+                            <p>Confirmed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon cancelled">❌</div>
+                        <div class="stat-details">
+                            <h3 id="cancelledCount">0</h3>
+                            <p>Cancelled</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="appointments-table">
+                    <div class="table-header">
+                        Recent Appointments
+                    </div>
+                    <div id="dashboardAppointments"></div>
+                </div>
+            </div>
+
+            <!-- Pending Section -->
+            <div class="admin-section" id="pendingSection">
+                <div class="appointments-table">
+                    <div class="table-header">
+                        Pending Appointments
+                    </div>
+                    <div id="pendingAppointments"></div>
+                </div>
+            </div>
+
+            <!-- Confirmed Section -->
+            <div class="admin-section" id="confirmedSection">
+                <div class="appointments-table">
+                    <div class="table-header">
+                        Confirmed Appointments
+                    </div>
+                    <div id="confirmedAppointments"></div>
+                </div>
+            </div>
+
+            <!-- Cancelled Section -->
+            <div class="admin-section" id="cancelledSection">
+                <div class="appointments-table">
+                    <div class="table-header">
+                        Cancelled Appointments
+                    </div>
+                    <div id="cancelledAppointments"></div>
+                </div>
+            </div>
+
+            <!-- All Appointments Section -->
+            <div class="admin-section" id="allSection">
+                <div class="appointments-table">
+                    <div class="table-header">
+                        All Appointments
+                    </div>
+                    <div id="allAppointments"></div>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div class="admin-section" id="settingsSection">
+                <div class="appointments-table">
+                    <div class="table-header">
+                        Email Settings
+                    </div>
+                    <div style="padding: 2rem;">
+                        <div class="form-group" style="margin-bottom: 1rem;">
+                            <label for="doctorEmail" style="color: var(--primary); font-weight: 600;">Doctor's Email *</label>
+                            <input type="email" id="doctorEmail" value="padamaja_joshi@yahoo.co.in" style="padding: 10px; border: 2px solid var(--light); border-radius: 8px; margin-top: 0.5rem;">
+                        </div>
+                        <button class="btn" onclick="saveSettings()">Save Settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Replace with doctor image -->
-    <div class="hero-image">
-      <img src="https://images.unsplash.com/photo-1550831107-1553da8c8464" alt="Doctor">
-    </div>
-  </div>
-</section>
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div style="font-size: 3rem; color: var(--secondary);">📞</div>
+                    <h4>Phone</h4>
+                    <p>+91 99206 25942</p>
+                </div>
+                <div class="contact-card">
+                    <div style="font-size: 3rem; color: var(--secondary);">✉️</div>
+                    <h4>Email</h4>
+                    <p>padamaja_joshi@yahoo.co.in</p>
+                </div>
+                <div class="contact-card">
+                    <div style="font-size: 3rem; color: var(--secondary);">📍</div>
+                    <h4>Address</h4>
+                    <p>40 Jankinagar Annexe<br>Opposite Patanjali, Near Navlakha Chowraha<br>Indore - 452001</p>
+                </div>
+                <div class="contact-card">
+                    <div style="font-size: 3rem; color: var(--secondary);">💬</div>
+                    <h4>WhatsApp</h4>
+                    <p><a href="https://wa.me/919920625942" target="_blank" style="color: var(--secondary);">Chat Now</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- ABOUT -->
-<section id="about" class="section hidden">
-  <div class="container split">
-    <div>
-      <h2>About Dr. Padamaja Joshi</h2>
-      <p>
-        Senior Clinical Nutritionist & Dietician with more than
-        <strong>three decades of hospital-based experience</strong>.
-        Former Chief Dietician at leading multispecialty hospitals.
-      </p>
-      <ul class="points">
-        <li>ICU & Critical Care Nutrition</li>
-        <li>Burns & Trauma Nutritional Support</li>
-        <li>NABH Protocol Implementation</li>
-        <li>Therapeutic Diet Planning</li>
-      </ul>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Dr. Padamaja Joshi - Clinical Nutritionist. All Rights Reserved.</p>
+            <p>Life Member: IDA | ISPEN | IAPEN</p>
+        </div>
+    </footer>
 
-    <div class="illustration">
-      <img src="https://images.unsplash.com/photo-1580281657521-8c5a6f90f16d">
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services" class="section hidden">
-  <div class="container">
-    <h2 class="center">Areas of Expertise</h2>
-
-    <div class="cards">
-      <div class="card">Critical Care & ICU Nutrition</div>
-      <div class="card">Burns & Trauma Support</div>
-      <div class="card">Pre & Post Operative Nutrition</div>
-      <div class="card">Diabetes & Lifestyle Disorders</div>
-      <div class="card">Hospital Dietetics Management</div>
-      <div class="card">Nutritional Counselling</div>
-    </div>
-  </div>
-</section>
-
-<!-- APPOINTMENT -->
-<section id="appointment" class="section hidden">
-  <div class="container form-box">
-    <h2>Book Appointment</h2>
-
-    <form id="appointmentForm">
-      <input id="name" placeholder="Patient Name" required>
-      <input id="phone" placeholder="Mobile Number" required>
-      <input id="date" type="date" required>
-
-      <select id="time">
-        <option>10:00 - 10:30</option>
-        <option>10:30 - 11:00</option>
-        <option>11:00 - 11:30</option>
-      </select>
-
-      <textarea id="problem" placeholder="Health Concern"></textarea>
-
-      <button type="submit">Submit Appointment</button>
-    </form>
-  </div>
-</section>
-
-<!-- ADMIN -->
-<section id="admin" class="section hidden">
-  <div class="container admin-box">
-
-    <div id="adminLogin">
-      <h2>Admin Login</h2>
-      <input type="password" id="adminPass" placeholder="Password">
-      <button onclick="loginAdmin()">Login</button>
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <h3>✅ Booking Submitted!</h3>
+            <p>Your appointment request has been submitted successfully.</p>
+            <p>You will receive confirmation on WhatsApp once approved by the doctor.</p>
+            <button class="btn" onclick="closeModal()">Close</button>
+        </div>
     </div>
 
-    <div id="adminPanel" class="hidden">
-      <h2>Appointments</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Concern</th>
-          </tr>
-        </thead>
-        <tbody id="adminTable"></tbody>
-      </table>
-
-      <div class="admin-actions">
-        <button onclick="exportToExcel()">Export to Excel</button>
-        <button onclick="clearAppointments()">Clear All</button>
-      </div>
+    <!-- Admin Login Modal -->
+    <div class="password-modal" id="passwordModal">
+        <div class="password-form">
+            <h3>Admin Login</h3>
+            <input type="password" id="adminPassword" placeholder="Enter Password">
+            <button class="btn" onclick="checkPassword()">Login</button>
+            <button class="btn" style="background: var(--dark); margin-top: 10px;" onclick="closePasswordModal()">Cancel</button>
+        </div>
     </div>
 
-  </div>
-</section>
+    <script>
+        // Data Storage
+        let appointments = [];
+        let doctorEmail = 'padamaja_joshi@yahoo.co.in';
 
-<!-- WhatsApp Floating -->
-<a id="whatsappBtn" class="whatsapp" target="_blank">WhatsApp</a>
+        // Navigation
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
 
-<script src="script.js"></script>
+        function closeMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.remove('active');
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Set minimum date to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+
+        // Email Sending Function (Simulated)
+        function sendEmail(to, subject, body) {
+            // In a real application, this would connect to an email service
+            console.log('Email Sent:');
+            console.log('To:', to);
+            console.log('Subject:', subject);
+            console.log('Body:', body);
+            
+            // Simulate email sending
+            alert(`Email would be sent to: ${to}\n\nSubject: ${subject}\n\nThis is a demo. In production, this would use a backend email service like SendGrid, Mailgun, or SMTP.`);
+        }
+
+        // Book Appointment
+        function bookAppointment(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const consultation = document.getElementById('consultation').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const concern = document.getElementById('concern').value;
+
+            const appointment = {
+                id: Date.now(),
+                name,
+                phone,
+                email,
+                consultation,
+                date,
+                time,
+                concern,
+                status: 'Pending',
+                createdAt: new Date().toLocaleString()
+            };
+
+            appointments.push(appointment);
+
+            // Send WhatsApp notification to doctor
+            const whatsappMessage = encodeURIComponent(
+                `🆕 New Appointment Request\n\n` +
+                `👤 Name: ${name}\n` +
+                `📞 Phone: ${phone}\n` +
+                `📧 Email: ${email || 'Not provided'}\n` +
+                `💻 Type: ${consultation}\n` +
+                `📅 Date: ${date}\n` +
+                `⏰ Time: ${time}\n` +
+                `📝 Concern: ${concern}\n\n` +
+                `Please login to admin panel to approve/reject.`
+            );
+            
+            // Open WhatsApp in new tab
+            window.open(`https://wa.me/919920625942?text=${whatsappMessage}`, '_blank');
+
+            // Send email to doctor
+            const doctorEmailSubject = `New Appointment Request - ${name}`;
+            const doctorEmailBody = `
+                New Appointment Request Received
+                
+                Patient Details:
+                Name: ${name}
+                Phone: ${phone}
+                Email: ${email || 'Not provided'}
+                
+                Appointment Details:
+                Type: ${consultation}
+                Date: ${date}
+                Time: ${time}
+                
+                Health Concern:
+                ${concern}
+                
+                Status: Pending Approval
+                
+                Please login to the admin panel to approve or reject this appointment.
+            `;
+            
+            sendEmail(doctorEmail, doctorEmailSubject, doctorEmailBody);
+
+            // Reset form
+            e.target.reset();
+            
+            // Show success modal
+            document.getElementById('successModal').classList.add('active');
+            
+            // Update admin stats
+            updateAdminStats();
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        // Admin Login
+        function showAdminLogin() {
+            document.getElementById('passwordModal').classList.add('active');
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').classList.remove('active');
+            document.getElementById('adminPassword').value = '';
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === 'admin123') {
+                closePasswordModal();
+                document.getElementById('adminWrapper').classList.add('active');
+                updateAdminStats();
+                renderAppointments();
+            } else {
+                alert('Incorrect password!');
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('adminWrapper').classList.remove('active');
+        }
+
+        // Admin Panel Functions
+        function showAdminSection(section) {
+            // Remove active class from all menu items
+            document.querySelectorAll('.admin-menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class to clicked item
+            event.target.closest('.admin-menu-item').classList.add('active');
+            
+            // Hide all sections
+            document.querySelectorAll('.admin-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            
+            // Show selected section
+            const sectionMap = {
+                'dashboard': 'dashboardSection',
+                'pending': 'pendingSection',
+                'confirmed': 'confirmedSection',
+                'cancelled': 'cancelledSection',
+                'all': 'allSection',
+                'settings': 'settingsSection'
+            };
+            
+            document.getElementById(sectionMap[section]).classList.add('active');
+            
+            // Update title
+            const titleMap = {
+                'dashboard': 'Dashboard',
+                'pending': 'Pending Appointments',
+                'confirmed': 'Confirmed Appointments',
+                'cancelled': 'Cancelled Appointments',
+                'all': 'All Appointments',
+                'settings': 'Settings'
+            };
+            
+            document.getElementById('adminSectionTitle').textContent = titleMap[section];
+            
+            // Render appointments for the section
+            renderAppointments();
+        }
+
+        function updateAdminStats() {
+            const total = appointments.length;
+            const pending = appointments.filter(a => a.status === 'Pending').length;
+            const confirmed = appointments.filter(a => a.status === 'Confirmed').length;
+            const cancelled = appointments.filter(a => a.status === 'Cancelled').length;
+            
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('confirmedCount').textContent = confirmed;
+            document.getElementById('cancelledCount').textContent = cancelled;
+            
+            document.getElementById('pendingBadge').textContent = pending;
+            document.getElementById('confirmedBadge').textContent = confirmed;
+            document.getElementById('cancelledBadge').textContent = cancelled;
+        }
+
+        function renderAppointments() {
+            renderDashboard();
+            renderPending();
+            renderConfirmed();
+            renderCancelled();
+            renderAll();
+        }
+
+        function renderDashboard() {
+            const container = document.getElementById('dashboardAppointments');
+            const recentAppointments = appointments.slice(-5).reverse();
+            
+            if (recentAppointments.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>No appointments yet</p></div>';
+                return;
+            }
+            
+            container.innerHTML = recentAppointments.map(apt => createAppointmentCard(apt)).join('');
+        }
+
+        function renderPending() {
+            const container = document.getElementById('pendingAppointments');
+            const pending = appointments.filter(a => a.status === 'Pending');
+            
+            if (pending.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="icon">✅</div><p>No pending appointments</p></div>';
+                return;
+            }
+            
+            container.innerHTML = pending.map(apt => createAppointmentCard(apt)).join('');
+        }
+
+        function renderConfirmed() {
+            const container = document.getElementById('confirmedAppointments');
+            const confirmed = appointments.filter(a => a.status === 'Confirmed');
+            
+            if (confirmed.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="icon">📅</div><p>No confirmed appointments</p></div>';
+                return;
+            }
+            
+            container.innerHTML = confirmed.map(apt => createAppointmentCard(apt)).join('');
+        }
+
+        function renderCancelled() {
+            const container = document.getElementById('cancelledAppointments');
+            const cancelled = appointments.filter(a => a.status === 'Cancelled');
+            
+            if (cancelled.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="icon">🗑️</div><p>No cancelled appointments</p></div>';
+                return;
+            }
+            
+            container.innerHTML = cancelled.map(apt => createAppointmentCard(apt)).join('');
+        }
+
+        function renderAll() {
+            const container = document.getElementById('allAppointments');
+            
+            if (appointments.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>No appointments yet</p></div>';
+                return;
+            }
+            
+            container.innerHTML = appointments.slice().reverse().map(apt => createAppointmentCard(apt)).join('');
+        }
+
+        function createAppointmentCard(apt) {
+            const statusClass = `status-${apt.status.toLowerCase()}`;
+            
+            return `
+                <div class="appointment-item">
+                    <div class="appointment-header">
+                        <div class="appointment-name">${apt.name}</div>
+                        <span class="status-badge ${statusClass}">${apt.status}</span>
+                    </div>
+                    <div class="appointment-details">
+                        <div class="detail-item">
+                            <span class="icon">📞</span>
+                            <span>${apt.phone}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="icon">📧</span>
+                            <span>${apt.email || 'Not provided'}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="icon">💻</span>
+                            <span>${apt.consultation}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="icon">📅</span>
+                            <span>${apt.date}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="icon">⏰</span>
+                            <span>${apt.time}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="icon">🕒</span>
+                            <span>${apt.createdAt}</span>
+                        </div>
+                    </div>
+                    ${apt.concern ? `<div class="detail-item" style="margin-top: 1rem;"><span class="icon">📝</span><span><strong>Concern:</strong> ${apt.concern}</span></div>` : ''}
+                    ${apt.status === 'Pending' ? `
+                        <div class="appointment-actions">
+                            <button class="btn btn-approve btn-small" onclick="approveAppointment(${apt.id})">✅ Approve</button>
+                            <button class="btn btn-cancel btn-small" onclick="cancelAppointment(${apt.id})">❌ Cancel</button>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function approveAppointment(id) {
+            const appointment = appointments.find(a => a.id === id);
+            if (appointment) {
+                appointment.status = 'Confirmed';
+                
+                // Send WhatsApp confirmation to patient
+                const patientWhatsApp = encodeURIComponent(
+                    `✅ Appointment Confirmed\n\n` +
+                    `Dear ${appointment.name},\n\n` +
+                    `Your appointment with Dr. Padamaja Joshi has been confirmed!\n\n` +
+                    `📅 Date: ${appointment.date}\n` +
+                    `⏰ Time: ${appointment.time}\n` +
+                    `💻 Type: ${appointment.consultation}\n\n` +
+                    `Looking forward to seeing you!\n\n` +
+                    `Best regards,\n` +
+                    `Dr. Padamaja Joshi`
+                );
+                
+                window.open(`https://wa.me/91${appointment.phone}?text=${patientWhatsApp}`, '_blank');
+                
+                // Send confirmation email to patient (if email provided)
+                if (appointment.email) {
+                    const patientEmailSubject = `Appointment Confirmed - Dr. Padamaja Joshi`;
+                    const patientEmailBody = `
+                        Dear ${appointment.name},
+                        
+                        Your appointment with Dr. Padamaja Joshi has been confirmed!
+                        
+                        Appointment Details:
+                        Date: ${appointment.date}
+                        Time: ${appointment.time}
+                        Type: ${appointment.consultation}
+                        
+                        ${appointment.consultation === 'online' ? 
+                            'You will receive the consultation link via WhatsApp before your appointment.' : 
+                            'Address: 40 Jankinagar Annexe, Opposite Patanjali, Near Navlakha Chowraha, Indore - 452001'}
+                        
+                        If you need to reschedule, please contact us at +91 99206 25942.
+                        
+                        Best regards,
+                        Dr. Padamaja Joshi
+                        Clinical Nutritionist
+                    `;
+                    
+                    sendEmail(appointment.email, patientEmailSubject, patientEmailBody);
+                }
+                
+                updateAdminStats();
+                renderAppointments();
+                alert('Appointment approved! Confirmation sent to patient.');
+            }
+        }
+
+        function cancelAppointment(id) {
+            const appointment = appointments.find(a => a.id === id);
+            if (appointment && confirm('Are you sure you want to cancel this appointment?')) {
+                appointment.status = 'Cancelled';
+                
+                // Send cancellation notification to patient
+                const patientWhatsApp = encodeURIComponent(
+                    `❌ Appointment Cancelled\n\n` +
+                    `Dear ${appointment.name},\n\n` +
+                    `Your appointment scheduled for ${appointment.date} at ${appointment.time} has been cancelled.\n\n` +
+                    `Please contact us at +91 99206 25942 to reschedule.\n\n` +
+                    `Best regards,\n` +
+                    `Dr. Padamaja Joshi`
+                );
+                
+                window.open(`https://wa.me/91${appointment.phone}?text=${patientWhatsApp}`, '_blank');
+                
+                // Send cancellation email to patient (if email provided)
+                if (appointment.email) {
+                    const patientEmailSubject = `Appointment Cancelled - Dr. Padamaja Joshi`;
+                    const patientEmailBody = `
+                        Dear ${appointment.name},
+                        
+                        We regret to inform you that your appointment scheduled for ${appointment.date} at ${appointment.time} has been cancelled.
+                        
+                        Please contact us at +91 99206 25942 or reply to this email to reschedule your appointment.
+                        
+                        We apologize for any inconvenience.
+                        
+                        Best regards,
+                        Dr. Padamaja Joshi
+                        Clinical Nutritionist
+                    `;
+                    
+                    sendEmail(appointment.email, patientEmailSubject, patientEmailBody);
+                }
+                
+                updateAdminStats();
+                renderAppointments();
+                alert('Appointment cancelled. Notification sent to patient.');
+            }
+        }
+
+        function saveSettings() {
+            doctorEmail = document.getElementById('doctorEmail').value;
+            alert('Settings saved successfully!');
+        }
+
+        // Initialize
+        updateAdminStats();
+    </script>
 </body>
 </html>
